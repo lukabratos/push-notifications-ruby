@@ -83,7 +83,9 @@ module Pusher
 
     private
 
+    # Pusher Push Notifications Ruby server SDK version
     SDK_VERSION = '0.8.0'
+    # Maximum interest name length
     MAX_INTEREST_LENGTH = 164
 
     def base_url
