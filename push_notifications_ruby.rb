@@ -4,16 +4,52 @@ require 'net/http'
 require 'uri'
 require 'json'
 
+# Pusher Push Notifications Ruby server SDK
 module Pusher
-  # Pusher Push Notifications Ruby server SDK
+  # Push Notifications Client
   class PushNotifications
-    attr_accessor :instance_id, :secret_key
+    # The unique identifier for your Push notifications instance
+    attr_accessor :instance_id
+    # Push Notifications instance secret key
+    attr_accessor :secret_key
 
+    # Initializes Push Notification client
+    #
+    # ==== Attributes
+    #
+    # * +instance_id+:: The unique identifier for your Push notifications instance
+    # * +secret_key+:: Push Notifications instance secret key
+    #
+    # ==== Examples
+    #
+    #    instance_id = '97c56dfe-58f5-408b-ab3a-158e51a860f2'
+    #    secret_key = '6033364526F02EDEF472461879CE485'
+    #
+    #    pusher = Pusher::PushNotifications.new(instance_id, scecret_key)
     def initialize(instance_id, secret_key)
       @instance_id = instance_id
       @secret_key = secret_key
     end
 
+    # Publish a push notification to your registered & subscribed devices
+    #
+    # ==== Attributes
+    #
+    # * +interests+:: Array of interests that you want to subscribe to
+    # * +publish_body+:: Hash containing the body of the publish request
+    #
+    # ==== Examples
+    #
+    #    publish_body = {
+    #      'apns': {
+    #        'aps': {
+    #          'alert': 'Hello!'
+    #        }
+    #      }
+    #    }
+    #
+    #    interests = %w[luka test]
+    #    pusher.publish(interests, publish_body)
     def publish(interests, publish_body)
       response = publishes_request(interests, publish_body)
       puts JSON.parse(response.body)['publishId']
