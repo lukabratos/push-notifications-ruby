@@ -69,7 +69,7 @@ module Pusher
 
       res = publishes_request(interests, publish_body)
       if res.is_a?(Net::HTTPSuccess)
-        puts JSON.parse(res.body)['publishId']
+        return JSON.parse(res.body)['publishId']
       else
         handle_error(res)
       end
