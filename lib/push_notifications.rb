@@ -68,8 +68,11 @@ module Pusher
       validate_publish_body(publish_body)
 
       res = publishes_request(interests, publish_body)
-      return JSON.parse(res.body)['publishId'] if res.is_a?(Net::HTTPSuccess)
-      handle_error(res)
+      if res.is_a?(Net::HTTPSuccess)
+        puts JSON.parse(res.body)['publishId']
+      else
+        handle_error(res)
+      end
     end
 
     private
