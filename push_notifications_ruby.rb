@@ -142,7 +142,7 @@ module Pusher
 
     def validate_interests_array(interests)
       raise TypeError, 'interests must be an array' unless interests.is_a? Array
-      raise StandardError, 'Publishes must target at least one interest' if interests.empty?
+      raise ArgumentError, 'Publishes must target at least one interest' if interests.empty?
     end
 
     def validate_interest_characters(interests)
@@ -151,13 +151,13 @@ module Pusher
         ' numbers or one of _=@,.:'
       interest_regex = /^(_|=|@|,|\\.|:|[A-Z]|[a-z]|[0-9])*$/
       invalid_interest = interests.find { |interest| !interest[interest_regex] }
-      raise StandardError, invalid_interest + error_message if invalid_interest
+      raise ArgumentError, invalid_interest + error_message if invalid_interest
     end
 
     def validate_interest_length(interests)
       error_message = " is longer than the maximum of #{MAX_INTEREST_LENGTH} chars"
       invalid_interest = interests.find { |interest| interest.length > MAX_INTEREST_LENGTH }
-      raise StandardError, invalid_interest + error_message if invalid_interest
+      raise ArgumentError, invalid_interest + error_message if invalid_interest
     end
   end
 end
