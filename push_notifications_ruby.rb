@@ -48,7 +48,7 @@ module Pusher
     #      }
     #    }
     #
-    #    interests = %w[luka test]
+    #    interests = %w[luka pizza]
     #    pusher.publish(interests, publish_body)
     def publish(interests, publish_body)
       response = publishes_request(interests, publish_body)
