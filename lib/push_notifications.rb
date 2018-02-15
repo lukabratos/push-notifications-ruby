@@ -21,11 +21,6 @@ module Pusher
     class PusherServerError < StandardError
     end
 
-    # The unique identifier for your Push notifications instance
-    attr_accessor :instance_id
-    # Push Notificatio  ns instance secret key
-    attr_accessor :secret_key
-
     # Initializes Push Notification client
     #
     # ==== Attributes
@@ -88,16 +83,16 @@ module Pusher
     MAX_INTEREST_LENGTH = 164
 
     def base_url
-      "https://#{instance_id}.pushnotifications.pusher.com/publish_api/v1"
+      "https://#{@instance_id}.pushnotifications.pusher.com/publish_api/v1"
     end
 
     def publishes_url
-      "#{base_url}/instances/#{instance_id}/publishes"
+      "#{base_url}/instances/#{@instance_id}/publishes"
     end
 
     def header
       header = {}
-      header['Authorization'] = "Bearer #{secret_key}"
+      header['Authorization'] = "Bearer #{@secret_key}"
       header['Accept'] = 'application/json'
       header['Content-Type'] = 'application/json'
       header['X-Client-SDK-Version'] = SDK_VERSION
