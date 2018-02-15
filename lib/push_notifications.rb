@@ -36,8 +36,6 @@ module Pusher
     #
     #    pusher = Pusher::PushNotifications.new(instance_id, scecret_key)
     def initialize(instance_id, secret_key)
-      validate_instance_id(instance_id)
-      validate_secret_key(secret_key)
       @instance_id = instance_id
       @secret_key = secret_key
     end
@@ -62,10 +60,9 @@ module Pusher
     #    interests = %w[luka pizza]
     #    pusher.publish(interests, publish_body)
     def publish(interests, publish_body)
-      validate_interests_array(interests)
+      raise ArgumentError, 'Publishes must target at least one interest' if interests.empty?
       validate_interest_length(interests)
       validate_interest_characters(interests)
-      validate_publish_body(publish_body)
 
       res = publishes_request(interests, publish_body)
       if res.is_a?(Net::HTTPSuccess)
@@ -120,23 +117,6 @@ module Pusher
       when Net::HTTPServerError then
         raise PusherServerError, error_description
       end
-    end
-
-    def validate_instance_id(instance_id)
-      raise TypeError, 'instance_id must be string' unless instance_id.is_a? String
-    end
-
-    def validate_secret_key(secret_key)
-      raise TypeError, 'secret_key must be string' unless secret_key.is_a? String
-    end
-
-    def validate_publish_body(publish_body)
-      raise TypeError, 'publish_body must be a hash' unless publish_body.is_a? Hash
-    end
-
-    def validate_interests_array(interests)
-      raise TypeError, 'interests must be an array' unless interests.is_a? Array
-      raise ArgumentError, 'Publishes must target at least one interest' if interests.empty?
     end
 
     def validate_interest_characters(interests)
