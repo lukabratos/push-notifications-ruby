@@ -3,7 +3,6 @@
 require 'net/http'
 require 'uri'
 require 'json'
-require 'pry'
 
 # Pusher Push Notifications Ruby server SDK
 module Pusher
