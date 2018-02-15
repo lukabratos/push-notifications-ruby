@@ -34,7 +34,7 @@ module Pusher
     #    instance_id = '97c56dfe-58f5-408b-ab3a-158e51a860f2'
     #    secret_key = '6033364526F02EDEF472461879CE485'
     #
-    #    pusher = Pusher::PushNotifications.new(instance_id, scecret_key)
+    #    pusher = Pusher::PushNotifications.new(instance_id, secret_key)
     def initialize(instance_id, secret_key)
       @instance_id = instance_id
       @secret_key = secret_key
