@@ -123,7 +123,7 @@ module Pusher
       error_message = ' contains a forbidden character.'\
         ' Allowed characters are: ASCII upper/lower-case letters,'\
         ' numbers or one of _=@,.:'
-      interest_regex = /^(_|=|@|,|\\.|:|[A-Z]|[a-z]|[0-9])*$/
+      interest_regex = /\A[A-Za-z0-9_=@:,\\.]+\z/
       invalid_interest = interests.find { |interest| !interest[interest_regex] }
       raise ArgumentError, invalid_interest + error_message if invalid_interest
     end
