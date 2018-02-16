@@ -61,6 +61,7 @@ module Pusher
     #    pusher.publish(interests, publish_body)
     def publish(interests, publish_body)
       raise ArgumentError, 'Publishes must target at least one interest' if interests.empty?
+      raise ArgumentError, 'Maximum 10 interests are allowed per publish request' if interests.count > 10
       validate_interest_length(interests)
       validate_interest_characters(interests)
 
