@@ -8,6 +8,10 @@
 
         $ gem install pusher_push_notifications
 
+## Examples
+
+Refer to the `examples` directory.
+
 ## Communication
 
 - Found a bug? Please open an [issue](https://github.com/pusher/push-notifications-ruby/issues).
