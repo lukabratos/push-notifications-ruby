@@ -6,7 +6,7 @@ require 'json'
 
 # Pusher Push Notifications Ruby server SDK
 module Pusher
-  # Push Notifications Client
+  # Pusher Push Notifications API client
   class PushNotifications
     # Raised when when Push Notifications secret key is incorrect
     class PusherAuthError < StandardError
