@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'pusher_push_notifications'
+require 'pusher-push-notifications'
 
 instance_id = '97c56dfe-58f5-408b-ab3a-158e51a860f2'
 secret_key = '6033364526F02EDEF472461879CE485'
